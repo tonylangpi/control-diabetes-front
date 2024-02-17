@@ -14,7 +14,8 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <body className={inter.className}>
         <Providers>
-          <div className="mx-auto max-w-5xl text-2xl gap-2 mb-10">
+     
+          <div className="mx-auto text-2xl gap-2  w-full">
             <Navbar/>
              {children}
           </div>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { data: session, status } = useSession();
@@ -19,13 +20,14 @@ const Navbar = () => {
            >
              <div className="container">
                <div className="relative -mx-4 flex items-center justify-between">
-                 <div className="w-60 max-w-full px-4">
+                 <div className="w-60 max-w-full px-10">
                    <Link href={"/"} className="block w-full py-5">
                      <img
                        src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-primary.svg"
                        alt="logo"
                        className="dark:hidden"
                      />
+                      
                      <img
                        src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-white.svg"
                        alt="logo"
@@ -54,9 +56,9 @@ const Navbar = () => {
                        } `}
                      >
                        <ul className="block lg:flex">
-                         <ListItem NavLink="/dashboard">Dashboard</ListItem>
-                         <ListItem NavLink="/#">Pacientes</ListItem>
-                         <ListItem NavLink="/#">Citas</ListItem>
+                         <ListItem NavLink="/dashboard">Inicio</ListItem>
+                         <ListItem NavLink="/Pacientes">Pacientes</ListItem>
+                         <ListItem NavLink="/">Consulta</ListItem>
                          <button
                            onClick={() => {
                              signOut();
