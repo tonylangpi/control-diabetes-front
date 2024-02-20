@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import {toast} from 'sonner';
 import Image from 'next/image'
 import logo from '../pictures/logo.jpg'
 export default function Component() {
@@ -14,14 +15,26 @@ const handleSubmit = async (event) => {
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
   try {
-      const res = await signIn("credentials", {
-          email: formData.get("email"),
-          password: formData.get("password"),
-          redirect: false,
-        });
-        if (res?.error) return setError(res.error);
-    
-        if (res?.ok) return router.push("/dashboard");
+      
+        toast.promise(
+          async () => {
+            const res = await signIn("credentials", {
+              email: formData.get("email"),
+              password: formData.get("password"),
+              redirect: false,
+            })
+            if (res?.ok) {
+              router.push("/dashboard");
+              return "Bienvenido al sistema";
+            }
+             throw new Error(res.error) ;
+          },
+          {
+            loading: "Loading...",
+            success: (data) => `${data}`,
+            error: (data) => `${data}`,
+          }
+        )
   } catch (error) {
     console.error(error);
   }

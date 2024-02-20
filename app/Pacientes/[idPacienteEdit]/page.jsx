@@ -1,0 +1,15 @@
+import {getPacienteById} from '../../../servicios/moduloPacientes'
+import dynamic from 'next/dynamic'
+const DetallesPacienteForm = dynamic(() => import('../../components/DetallePacienteEdit'), { ssr: false, loading: () => <p>regresando...</p>})
+const DetallePaciente = async({params}) => {  
+  const paciente = await getPacienteById(params.idPacienteEdit);
+  return (
+    <>
+      {
+        paciente ? (<DetallesPacienteForm detallesPacienteId={paciente} />) : (<h2>Validando informacion</h2>)
+      }
+    </>
+  );
+}
+
+export default DetallePaciente

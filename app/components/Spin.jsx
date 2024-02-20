@@ -20,7 +20,7 @@ const Spin = () => {
           fill="currentFill"
         />
       </svg>
-      <span class="sr-only">Cargando_ _ _ _</span>
+      <span className="sr-only">Cargando_ _ _ _</span>
     </div>
   </div>
   );

@@ -3,6 +3,8 @@ import "./globals.css";
 import Providers from './Providers'
 const inter = Inter({ subsets: ["latin"] });
 import Navbar from './components/Nav'
+import {SWRProvider} from './swr-provider'
+import { Toaster } from "sonner";
 
 export const metadata = {
   title: "Gestion Pacientes App",
@@ -14,12 +16,14 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <body className={inter.className}>
         <Providers>
-     
-          <div className="mx-auto text-2xl gap-2  w-full">
-            <Navbar/>
-             {children}
-          </div>
-          </Providers>
+          <SWRProvider>
+            <div className="h-screen">
+              <Navbar />
+              {children}
+              <Toaster position="top-center" richColors  visibleToasts={1} duration={4000} />
+            </div>
+          </SWRProvider>
+        </Providers>
       </body>
     </html>
   );

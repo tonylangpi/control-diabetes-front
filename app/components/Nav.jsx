@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { data: session, status } = useSession();
-  console.log(status)
   const router = useRouter();
   return (() => {
     switch (status) {
