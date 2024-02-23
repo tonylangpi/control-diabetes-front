@@ -2,7 +2,11 @@ import axios from 'axios';
 
 export const getTipoDiabetess = async () => {
   try {
-    const {data} = await axios.get('http://localhost:3000/api/tiposdiabetes');
+    const {data} = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/tiposdiabetes/all`,{
+      headers:{
+        apiKey: process.env.NEXT_PUBLIC_API_KEY
+      }
+    });
     return data;
   } catch (error) {
     console.error(error);

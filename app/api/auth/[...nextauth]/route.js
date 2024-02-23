@@ -11,7 +11,7 @@ export const authOptions= {
          password: {label:"Password", type: "password"}
       },
       async authorize(credentials) {
-        const res = await sequelize.query(`SELECT usu.Nombres, usu.Apellidos, usu.Correo, usu.Contrasena, r.Descripcion FROM Usuarios usu 
+        const res = await sequelize.query(`SELECT  usu.ID_Usuario, usu.Nombres, usu.Apellidos, usu.Correo, usu.Contrasena, r.Descripcion FROM Usuarios usu 
         inner join Roles r on r.Id_Rol = usu.Rol
         WHERE usu.Correo = ?`,{
           type: sequelize.QueryTypes.SELECT,

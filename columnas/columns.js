@@ -105,3 +105,72 @@ export const Medicamentoss = [
   }
   
 ];
+
+export const ExpedientesByPaciente = [
+  {
+    accessorKey: "Id_Ficha",
+    header: "Codigo de Expediente",
+    enableEditing: false,
+    size: 80,
+  },
+  {
+    accessorKey: "Motivo_Consulta",
+    header: "Motivo de la consulta",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Id_Paciente",
+    header: "Codigo de paciente",
+    enableEditing: true,
+    size: 100,
+  },
+  {
+    accessorKey: "Usuario",
+    header: "usuario que lo creo",
+    enableEditing: true,
+    size: 100,
+  },
+  {
+    accessorKey: "Tipo_Diabetes",
+    header: "Tipo de diabetes diagnosticada",
+    enableEditing: true,
+    size: 50,
+  },
+  {
+    accessorKey: "Fecha",
+    header: "Fecha de creacion",
+    enableEditing: true,
+    size: 50,
+  },
+  {
+    accessorKey: "Diagnostico",
+    header: "Diagnostico",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Proxima_visita",
+    header: "Proxima visita",
+    enableEditing: true,
+    size: 50,
+  },
+  {
+    accessorKey: "Nivel_Azucar",
+    header: "Nivel de azucar registrado",
+    enableEditing: true,
+    size: 100,
+  },
+  {
+    accessorKey: "Recomendaciones",
+    header: "Recomendaciones",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Estado",
+    header: "Estado",
+    enableEditing: true,
+    size: 200,
+  }
+];

@@ -14,13 +14,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body className={inter.className}>
+      <body>
         <Providers>
           <SWRProvider>
-            <div className="h-screen">
+            <div className="h-auto w-auto">
               <Navbar />
               {children}
-              <Toaster position="top-center" richColors  visibleToasts={1} duration={4000} />
+              <Toaster position="top-center" richColors  visibleToasts={1} duration={3000} />
             </div>
           </SWRProvider>
         </Providers>
