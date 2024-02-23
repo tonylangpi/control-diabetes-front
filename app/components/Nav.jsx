@@ -18,19 +18,20 @@ const Navbar = () => {
              className={`flex w-full items-center bg-white dark:bg-white`}
            >
              <div className="container">
-               <div className="relative -mx-4 flex items-center justify-between">
+               <div className="relative -mx-1 flex items-center justify-between">
                  <div className="w-60 max-w-full px-10">
-                   <Link href={"/"} className="block w-full py-5">
+                   <Link href={"/dashboard"} >
                      <img
-                       src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-primary.svg"
+                       src="https://umgnaranjo.com/wp-content/uploads/2018/11/logo-umg.png"
                        alt="logo"
-                       className="dark:hidden"
+                       className="dark:hidden h-13"
+                       
                      />
                       
                      <img
-                       src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-white.svg"
+                       src="https://umgnaranjo.com/wp-content/uploads/2018/11/logo-umg.png"
                        alt="logo"
-                       className="hidden dark:block"
+                       className="hidden dark:block h-13 "
                      />
                    </Link>
                  </div>
@@ -46,6 +47,7 @@ const Navbar = () => {
                        <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color bg-black"></span>
                        <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-colo bg-black"></span>
                        <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color bg-black"></span>
+                     
                      </button>
                      <nav
                        // :className="!navbarOpen && 'hidden' "
@@ -57,7 +59,9 @@ const Navbar = () => {
                        <ul className="block lg:flex">
                          <ListItem NavLink="/dashboard">Inicio</ListItem>
                          <ListItem NavLink="/Pacientes">Pacientes</ListItem>
-                         <ListItem NavLink="/">Consulta</ListItem>
+                         <ListItem NavLink="/">Expediente</ListItem>
+                         <ListItem NavLink="/Tipos_Diabetes">Tipo de Diabetes</ListItem>
+                         <ListItem NavLink="/Medicamentos">Registro de Medicamentos</ListItem>
                          <button
                            onClick={() => {
                              signOut();

@@ -2,7 +2,7 @@
 export const pacientes = [
   {
     accessorKey: "Id_Paciente",
-    header: "Id Paciente",
+    header: "Codigo Paciente",
     enableEditing: false,
     size: 80,
   },
@@ -32,7 +32,7 @@ export const pacientes = [
   },
   {
     accessorKey: "Fecha_Nacimiento",
-    header: "Fecha_Nacimiento",
+    header: "Fecha Nacimiento",
     enableEditing: true,
     size: 200,
   },
@@ -72,4 +72,36 @@ export const pacientes = [
     enableEditing: true,
     size: 200,
   },
+];
+
+export const TipoDiabetesT = [
+  {
+    accessorKey: "ID_Diabetes",
+    header: "Codigo Diabetes",
+    enableEditing: false,
+    size: 80,
+  },
+  {
+    accessorKey: "Descripcion",
+    header: "Tipo de Diabetes",
+    enableEditing: true,
+    size: 200,
+  }
+  
+];
+
+export const Medicamentoss = [
+  {
+    accessorKey: "Id_Medicamento",
+    header: "Codigo Medicamento",
+    enableEditing: false,
+    size: 80,
+  },
+  {
+    accessorKey: "Descripcion",
+    header: "Medicamento",
+    enableEditing: true,
+    size: 200,
+  }
+  
 ];

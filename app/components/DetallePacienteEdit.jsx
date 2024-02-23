@@ -60,7 +60,7 @@ const DetallePacienteEdit = ({detallesPacienteId}) => {
           >
             Nombres:
           </label>
-          <div className="mt-2">
+          <div className="mt-10">
             <input
               type="text"
               name="Nombres"
@@ -195,7 +195,7 @@ const DetallePacienteEdit = ({detallesPacienteId}) => {
             htmlFor="DPI"
             className="block text-sm font-medium leading-6 text-gray-900"
           >
-            Numero de Identificacion sin espacios ni guiones:
+            Numero de Identificacion:
           </label>
           <div className="mt-2">
             <input
@@ -436,7 +436,7 @@ const DetallePacienteEdit = ({detallesPacienteId}) => {
           </div>
         </div>
 
-        <div className="col-span-full">
+        <div className="col-span-full m-60 flex gap-4">
           <button
             type="submit"
             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
@@ -444,17 +444,19 @@ const DetallePacienteEdit = ({detallesPacienteId}) => {
             Editar
           </button>
          
-        </div>
-      </form>
-      <button
+          <button
             type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-4"
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             onClick={() => {
               router.push('/Pacientes');
             }}
           >
             Regresar
           </button>
+
+        </div>
+      </form>
+      
     </section>
   );
 }

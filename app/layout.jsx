@@ -7,7 +7,7 @@ import {SWRProvider} from './swr-provider'
 import { Toaster } from "sonner";
 
 export const metadata = {
-  title: "Gestion Pacientes App",
+  title: "Gestión Pacientes Web",
   description: "Aplicacion administrativa para la gestion de pacientes con diabetes",
 };
 

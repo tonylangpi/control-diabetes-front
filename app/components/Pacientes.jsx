@@ -1,6 +1,4 @@
 "use client";
-
-
 import Tabla from './Tabla'
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -73,14 +71,14 @@ const PacienteComponente = () => {
           className="grid grid-cols-3 gap-4 max-w-screen-md w-full space-y-8"
           onSubmit={enviar}
         >
-          <div className="col-span-3 sm:col-span-1">
+          <div className="col-span-3 sm:col-span-1 ">
             <label
               htmlFor="Nombres"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className="block text-sm font-medium leading-6 text-gray-900 "
             >
               Nombres:
             </label>
-            <div className="mt-2">
+            <div className="mt-10">
               <input
                 type="text"
                 name="Nombres"
@@ -217,7 +215,7 @@ const PacienteComponente = () => {
               htmlFor="DPI"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
-              Numero de Identificacion sin espacios ni guiones:
+              Numero de Identificacion :
             </label>
             <div className="mt-2">
               <input
@@ -458,7 +456,7 @@ const PacienteComponente = () => {
             </div>
           </div>
 
-          <div className="col-span-full">
+          <div className="col-span-full m-60 flex gap-4">
             <button
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
