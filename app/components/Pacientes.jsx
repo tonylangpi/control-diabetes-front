@@ -465,7 +465,8 @@ const PacienteComponente = () => {
             </button>
           </div>
         </form>
-        <div className='w-[100%] sm:w-[80%]'>
+        <div className="w-full sm:w-4/5">
+  <h3 className="text-xl font-bold mb-4 mt-28 text-center">Listado de Pacientes Diabeticos</h3>
           <Tabla data={data ? data : []} columns={pacientes ? pacientes : []} ButtonsConfig={ButtonsConfigPacientes} mutate={mutate} />
         </div>
       </div>

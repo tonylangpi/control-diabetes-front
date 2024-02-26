@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const getExpedientesByPaciente = async (idPaciente) => {
+export const getRecetasByFicha = async (ID_FICHA) => {
   try {
-    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/expedientes/allByPaciente/${idPaciente}`,
+    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/receta/allByReceta/${ID_FICHA}`,
       {
         headers: {
           apiKey: process.env.NEXT_PUBLIC_API_KEY
@@ -16,10 +16,10 @@ export const getExpedientesByPaciente = async (idPaciente) => {
 }
 
 
-export const createExpedienteByPaciente = async (datosExpediente) => {
+export const createRecetaByFicha = async (receta) => {
 
   try {
-    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/expedientes/createByPaciente`, datosExpediente,
+    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/receta/createByReceta`, receta,
       {
         headers: {
           apiKey: process.env.NEXT_PUBLIC_API_KEY

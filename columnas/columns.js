@@ -87,7 +87,7 @@ export const TipoDiabetesT = [
     enableEditing: true,
     size: 200,
   }
-  
+
 ];
 
 export const Medicamentoss = [
@@ -103,7 +103,7 @@ export const Medicamentoss = [
     enableEditing: true,
     size: 200,
   }
-  
+
 ];
 
 export const ExpedientesByPaciente = [
@@ -127,7 +127,7 @@ export const ExpedientesByPaciente = [
   },
   {
     accessorKey: "Usuario",
-    header: "usuario que lo creo",
+    header: "Usuario Autorizado",
     enableEditing: true,
     size: 100,
   },
@@ -170,6 +170,34 @@ export const ExpedientesByPaciente = [
   {
     accessorKey: "Estado",
     header: "Estado",
+    enableEditing: true,
+    size: 200,
+  }
+];
+
+export const Receta = [
+  {
+    accessorKey: "ID_RECETA",
+    header: "Codigo Receta",
+    enableEditing: false,
+    size: 80,
+  },
+  {
+    accessorKey: "Descripcion",
+    header: "Medicamento",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "ID_FICHA",
+    header: "Registro de la Ficha",
+    enableEditing: false,
+    size: 200,
+  }
+  ,
+  {
+    accessorKey: "Instruccion",
+    header: "Instruccion",
     enableEditing: true,
     size: 200,
   }

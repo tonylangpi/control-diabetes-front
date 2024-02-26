@@ -4,7 +4,8 @@ import { useRouter } from 'next/navigation'
 const ButtonsConfigExpedientesPorPacientes = ({row, mutate}) => {
     const router = useRouter()//enrutador de paginas de nextjs
     const manageMedicamentos = () => {
-        console.log('Editando Tipo de Diabetes: ', row.getValue("Id_Ficha"))
+        
+        router.push(`/Recetas/${row.getValue("Id_Ficha")}`)
     }
   return (
     <>

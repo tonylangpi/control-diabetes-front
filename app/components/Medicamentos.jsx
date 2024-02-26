@@ -114,7 +114,8 @@ const Medicamentos = () => {
           </button>
         </div>
       </form>
-      <div className='w-[100%] sm:w-[80%]'>
+      <div className="w-full sm:w-4/5">
+  <h3 className="text-xl font-bold mb-4 mt-28 text-center">Tipos de Medicamentos</h3>
         <Tabla data={data ? data : []} columns={Medicamentoss ? Medicamentoss : []} ButtonsConfig={ButtonsConfigMedicamentos} mutate={mutate} />
       </div>
     </div>

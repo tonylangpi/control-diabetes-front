@@ -1,21 +1,21 @@
 "use client"
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useSession} from "next-auth/react";
-import { useState} from "react";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
 import useSWR from "swr";
-import {toast} from 'sonner';
-import {ExpedientesByPaciente} from '../../columnas/columns';
-import {createExpedienteByPaciente} from '../../servicios/moduloExpedientes'
+import { toast } from 'sonner';
+import { ExpedientesByPaciente } from '../../columnas/columns';
+import { createExpedienteByPaciente } from '../../servicios/moduloExpedientes'
 import TablaExpedientes from '../components/Tabla'
 import ButtonConfigExpedientes from '../components/ButtonsConfigExpedientePorPaciente'
 
-const ExpedientesPaciente = ({pacienteID, tiposDiabetes}) => {
+const ExpedientesPaciente = ({ pacienteID, tiposDiabetes }) => {
   const router = useRouter();
   const [paciente, setPaciente] = useState(pacienteID);//[paciente, setPaciente
   const { data: session } = useSession();
   const idUsuario = session?.user?.ID_Usuario;
-    //inicializamos la peticion de los datos con swr en lugar de usar useEffect
+  //inicializamos la peticion de los datos con swr en lugar de usar useEffect
   const { data, mutate } = useSWR(
     `${process.env.NEXT_PUBLIC_API_URL}/expedientes/allByPaciente/${paciente}`,
     {
@@ -24,54 +24,54 @@ const ExpedientesPaciente = ({pacienteID, tiposDiabetes}) => {
       revalidateOnReconnect: false,
     }
   );
-const {
-  register,
-  handleSubmit,
-  formState: { errors },
-  reset,
-} = useForm({
-  mode: "onChange",
-  defaultValues: {
-    Motivo_Consulta:  '',
-    Id_Paciente: pacienteID ? pacienteID : '',
-    Id_Usuario:  idUsuario,
-    Id_Diabetes: '',
-    Fecha: new Date(),
-    Diagnostico:  '',
-    Proxima_visita:  '',
-    Nivel_Azucar:0,
-    Tiempo_tratamiento:'',
-    Recomendaciones:  '',
-    Estado:  'ACTIVO',
-  },
-});
-const enviar = handleSubmit(async (tratamiento) => {
-  try {
-    console.log(tratamiento)
-    toast.promise(async () => {
-      const res = await createExpedienteByPaciente(tratamiento);
-      if(res?.message){
-        reset();
-        mutate();
-        return res.message
-      }else{
-        throw new Error('No se pudo registrar el paciente')
-      }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    mode: "onChange",
+    defaultValues: {
+      Motivo_Consulta: '',
+      Id_Paciente: pacienteID ? pacienteID : '',
+      Id_Usuario: idUsuario,
+      Id_Diabetes: '',
+      Fecha: new Date(),
+      Diagnostico: '',
+      Proxima_visita: '',
+      Nivel_Azucar: 0,
+      Tiempo_tratamiento: '',
+      Recomendaciones: '',
+      Estado: 'ACTIVO',
     },
-    {
-      loading: "Loading...",
-      success: (data) => `${data}`,
-      error: (data) => `${data}`,
-    });
-    
-  } catch (error) {
-    console.log(error);
-  }
-});
+  });
+  const enviar = handleSubmit(async (tratamiento) => {
+    try {
+      console.log(tratamiento)
+      toast.promise(async () => {
+        const res = await createExpedienteByPaciente(tratamiento);
+        if (res?.message) {
+          reset();
+          mutate();
+          return res.message
+        } else {
+          throw new Error('No se pudo registrar el paciente')
+        }
+      },
+        {
+          loading: "Loading...",
+          success: (data) => `${data}`,
+          error: (data) => `${data}`,
+        });
+
+    } catch (error) {
+      console.log(error);
+    }
+  });
   return (
-    
+
     <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
-        <h2>Tratamientos del paciente con codigo {paciente ? paciente : ''}</h2>
+      <h2>Tratamientos del paciente con codigo {paciente ? paciente : ''}</h2>
       <form className="grid grid-cols-2 gap-2 max-w-screen-md w-full space-y-8" onSubmit={enviar}>
         <div className="col-span-3 sm:col-span-1">
           <label
@@ -117,7 +117,7 @@ const enviar = handleSubmit(async (tratamiento) => {
             )}
           </div>
         </div>
-        
+
 
         <div className="col-span-3 sm:col-span-1">
           <label
@@ -141,9 +141,9 @@ const enviar = handleSubmit(async (tratamiento) => {
             >
               {
                 tiposDiabetes ?
-                (tiposDiabetes.map((item)=>(
-                  <option key={item.ID_Diabetes} value={item.ID_Diabetes}> {item.Descripcion}</option>
-                ))) : <option value="">Cargando...</option>
+                  (tiposDiabetes.map((item) => (
+                    <option key={item.ID_Diabetes} value={item.ID_Diabetes}> {item.Descripcion}</option>
+                  ))) : <option value="">Cargando...</option>
               }
             </select>
             {errors.Id_Diabetes && (
@@ -274,7 +274,7 @@ const enviar = handleSubmit(async (tratamiento) => {
                 {errors.Tiempo_tratamiento.message}
               </span>
             )}
-             {errors.Tiempo_tratamiento?.type === "maxLength" && (
+            {errors.Tiempo_tratamiento?.type === "maxLength" && (
               <span className="mt-1 text-sm text-red-500">
                 La especificacion del tiempo de tratamiento no debe superar los 200 caracteres
               </span>
@@ -286,7 +286,7 @@ const enviar = handleSubmit(async (tratamiento) => {
             )}
           </div>
         </div>
-        
+
         <div className="col-span-3 sm:col-span-1">
           <label
             htmlFor="Diagnostico"
@@ -316,7 +316,7 @@ const enviar = handleSubmit(async (tratamiento) => {
                 {errors.Recomendaciones.message}
               </span>
             )}
-             {errors.Recomendaciones?.type === "maxLength" && (
+            {errors.Recomendaciones?.type === "maxLength" && (
               <span className="mt-1 text-sm text-red-500">
                 La especificacion de las recomendaciones no debe superar los 200 caracteres
               </span>
@@ -329,30 +329,34 @@ const enviar = handleSubmit(async (tratamiento) => {
           </div>
         </div>
 
-        
 
-        <div className="col-span-full m-60 flex gap-4">
+
+        <div className="col-span-full m-40 flex gap-4">
           <button
             type="submit"
             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Registrar Tratamiento
           </button>
-        </div>
-      </form>
-      <button
+
+          <button
             type="submit"
-            className="group relative w-50 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             onClick={() => {
               router.push('/Pacientes');
             }}
           >
             Regresar
           </button>
-        <div className='w-[100%] sm:w-[80%]'>
-          <h3>Tratamientos asignados</h3>
-           <TablaExpedientes data={data ? data : []} columns={ExpedientesByPaciente} ButtonsConfig={ButtonConfigExpedientes} mutate={mutate} />
         </div>
+
+
+      </form>
+
+      <div className="w-full sm:w-4/5">
+        <h3 className="text-xl font-bold mb-4 mt-28 text-center">Tratamientos Asignados</h3>
+        <TablaExpedientes data={data ? data : []} columns={ExpedientesByPaciente} ButtonsConfig={ButtonConfigExpedientes} mutate={mutate} />
+      </div>
     </section>
   )
 }
