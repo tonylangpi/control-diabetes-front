@@ -31,3 +31,18 @@ export const createRecetaByFicha = async (receta) => {
     console.error(error);
   }
 }
+
+export const deleteRecetaByFicha = async (ID_RECETA) => {
+  try {
+    const { data } = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/receta/deleteByFicha/${ID_RECETA}`,
+      {
+        headers: {
+          apiKey: process.env.NEXT_PUBLIC_API_KEY
+        }
+      }
+    );
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}

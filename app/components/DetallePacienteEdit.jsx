@@ -51,7 +51,7 @@ const DetallePacienteEdit = ({detallesPacienteId}) => {
       });
   return (
     <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
-        <h2>Editar Informacion de cliente</h2>
+         <h3 className="text-xl font-bold mb-4  text-center">Editar Informacion del Paciente</h3>
       <form className="grid grid-cols-3 gap-4 max-w-screen-md w-full space-y-8" onSubmit={onSubmit}>
         <div className="col-span-3 sm:col-span-1">
           <label

@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 import { Receta } from '../../columnas/columns';
 import { createRecetaByFicha } from '../../servicios/moduloRecetas'
 import TablaReceta from '../components/Tabla'
-import ButtonConfigRecetas from '../components/ButtonsConfigExpedientePorPaciente'
+import ButtonConfigRecetas from '../components/ButtonsConfigReceta'
 
 const Recetasficha = ({ fichaID, medicamento }) => {
   const router = useRouter();
@@ -157,7 +157,7 @@ const Recetasficha = ({ fichaID, medicamento }) => {
         <h3 className="text-xl font-bold mb-4 mt-28 text-center">
           Recetas asignadas
         </h3>
-        <TablaReceta data={data ? data : []} columns={Receta} mutate={mutate} />
+        <TablaReceta data={data ? data : []} columns={Receta}  ButtonsConfig={ButtonConfigRecetas} mutate={mutate} />
       </div>
     </section>
   );

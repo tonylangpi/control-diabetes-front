@@ -2,9 +2,9 @@
 import Tabla from './Tabla'
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import {createPaciente} from '../../servicios/moduloPacientes'
+import { createPaciente } from '../../servicios/moduloPacientes'
 import useSWR from 'swr';
-import {pacientes} from '../../columnas/columns'
+import { pacientes } from '../../columnas/columns'
 import ButtonsConfigPacientes from './ButtonEditPaciente';
 
 const PacienteComponente = () => {
@@ -25,17 +25,17 @@ const PacienteComponente = () => {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      Nombres:  '',
-      Apellidos:  '',
-      Telefono:  '',
+      Nombres: '',
+      Apellidos: '',
+      Telefono: '',
       DPI: '',
-      Fecha_Nacimiento:new Date(),
-      Correo:  '',
-      Direccion:  '',
-      Tipo_de_Sangre:'',
-      Cuadro_Clinico:'',
-      Genero:  '',
-      Estado:  'ACTIVO',
+      Fecha_Nacimiento: new Date(),
+      Correo: '',
+      Direccion: '',
+      Tipo_de_Sangre: '',
+      Cuadro_Clinico: '',
+      Genero: '',
+      Estado: 'ACTIVO',
     },
   });
 
@@ -43,20 +43,20 @@ const PacienteComponente = () => {
     try {
       toast.promise(async () => {
         const res = await createPaciente(paciente);
-        if(res?.message){
+        if (res?.message) {
           reset();
           mutate();
           return res.message
-        }else{
+        } else {
           throw new Error('No se pudo registrar el paciente')
         }
       },
-      {
-        loading: "Loading...",
-        success: (data) => `${data}`,
-        error: (data) => `${data}`,
-      });
-      
+        {
+          loading: "Loading...",
+          success: (data) => `${data}`,
+          error: (data) => `${data}`,
+        });
+
     } catch (error) {
       console.log(error);
     }
@@ -65,9 +65,10 @@ const PacienteComponente = () => {
 
   return (
     <>
-     
+
       <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
-        <h2>Crear Paciente</h2>
+        <h3 className="text-xl font-bold mb-4  text-center">Crear Paciente</h3>
+
         <form
           className="grid grid-cols-3 gap-4 max-w-screen-md w-full space-y-8"
           onSubmit={enviar}
@@ -130,9 +131,8 @@ const PacienteComponente = () => {
                 name="Apellidos"
                 id="Apellidos"
                 autoComplete="family-name"
-                className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
-                  errors.Apellidos ? "border-red-500" : ""
-                }`}
+                className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${errors.Apellidos ? "border-red-500" : ""
+                  }`}
                 {...register("Apellidos", {
                   required: {
                     value: true,
@@ -177,9 +177,8 @@ const PacienteComponente = () => {
                 name="Telefono"
                 id="Telefono"
                 autoComplete="tel"
-                className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
-                  errors.Telefono ? "border-red-500" : ""
-                }`}
+                className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${errors.Telefono ? "border-red-500" : ""
+                  }`}
                 {...register("Telefono", {
                   required: {
                     value: true,
@@ -298,9 +297,8 @@ const PacienteComponente = () => {
                 name="Correo"
                 id="Correo"
                 autoComplete="email"
-                className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
-                  errors.Correo ? "border-red-500" : ""
-                }`}
+                className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${errors.Correo ? "border-red-500" : ""
+                  }`}
                 {...register("Correo", {
                   required: {
                     value: true,
@@ -467,7 +465,7 @@ const PacienteComponente = () => {
           </div>
         </form>
         <div className="w-full sm:w-4/5">
-  <h3 className="text-xl font-bold mb-4 mt-28 text-center">Listado de Pacientes Diabeticos</h3>
+          <h3 className="text-xl font-bold mb-4 mt-28 text-center">Listado de Pacientes Diabeticos</h3>
           <Tabla data={data ? data : []} columns={pacientes ? pacientes : []} ButtonsConfig={ButtonsConfigPacientes} mutate={mutate} />
         </div>
       </div>

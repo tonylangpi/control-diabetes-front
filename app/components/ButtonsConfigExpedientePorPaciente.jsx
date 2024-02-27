@@ -5,8 +5,9 @@ const ButtonsConfigExpedientesPorPacientes = ({row, mutate}) => {
     const router = useRouter()//enrutador de paginas de nextjs
     const manageMedicamentos = () => {
         
-        router.push(`/Recetas/${row.getValue("Id_Ficha")}`)
-    }
+    router.push(`/Recetas/${row.getValue("Id_Ficha")}`)
+  }
+  
   return (
     <>
       <button
@@ -37,6 +38,7 @@ const ButtonsConfigExpedientesPorPacientes = ({row, mutate}) => {
           <path d="M10 7v-3a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v3" />
         </svg>
       </button>
+     
     </>
   );
 }
