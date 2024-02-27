@@ -61,9 +61,11 @@ const Recetasficha = ({ fichaID, medicamento }) => {
 
   return (
     <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
-      <h2>Recetas del paciente con codigo {ficha ? ficha : ''}</h2>
-      <form className="grid grid-cols-2 gap-2 max-w-screen-md w-full space-y-8" onSubmit={enviar}>
-
+      <h2>Recetas del paciente con codigo {ficha ? ficha : ""}</h2>
+      <form
+        className="grid grid-cols-2 gap-2 max-w-screen-md w-full space-y-8"
+        onSubmit={enviar}
+      >
         <div className="col-span-3 sm:col-span-1">
           <label
             htmlFor="ID_MEDICAMENTO"
@@ -84,12 +86,16 @@ const Recetasficha = ({ fichaID, medicamento }) => {
                 },
               })}
             >
-              {
-                medicamento ?
-                  (medicamento.map((item) => (
-                    <option key={item.Id_Medicamento} value={item.Id_Medicamento}> {item.Descripcion}</option>
-                  ))) : <option value="">Cargando...</option>
-              }
+              {medicamento ? (
+                medicamento.map((item) => (
+                  <option key={item.Id_Medicamento} value={item.Id_Medicamento}>
+                    {" "}
+                    {item.Descripcion}
+                  </option>
+                ))
+              ) : (
+                <option value="">Cargando...</option>
+              )}
             </select>
             {errors.ID_MEDICAMENTO && (
               <span className="mt-1 text-sm text-red-500">
@@ -129,8 +135,6 @@ const Recetasficha = ({ fichaID, medicamento }) => {
           </div>
         </div>
 
-
-
         <div className="col-span-full m-40 flex gap-4">
           <button
             type="submit"
@@ -138,27 +142,25 @@ const Recetasficha = ({ fichaID, medicamento }) => {
           >
             Registrar Receta
           </button>
-
           <button
-            type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            onClick={() => {
-              router.push('/Pacientes');
-            }}
-          >
-            Regresar
-          </button>
-
+          type="button"
+          className="group relative  w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          onClick={() => {
+            router.push("/Pacientes");
+          }}
+        >
+          Regresar
+        </button>
         </div>
       </form>
-
       <div className="w-full sm:w-4/5">
-        <h3 className="text-xl font-bold mb-4 mt-28 text-center">Recetas asignadas</h3>
-        <TablaReceta data={data ? data : []} columns={Receta} ButtonsConfig={ButtonConfigRecetas} mutate={mutate} />
+        <h3 className="text-xl font-bold mb-4 mt-28 text-center">
+          Recetas asignadas
+        </h3>
+        <TablaReceta data={data ? data : []} columns={Receta} mutate={mutate} />
       </div>
-
     </section>
-  )
+  );
 }
 
 export default Recetasficha

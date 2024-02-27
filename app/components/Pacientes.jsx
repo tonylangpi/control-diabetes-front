@@ -67,6 +67,7 @@ const PacienteComponente = () => {
     <>
      
       <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
+        <h2>Crear Paciente</h2>
         <form
           className="grid grid-cols-3 gap-4 max-w-screen-md w-full space-y-8"
           onSubmit={enviar}
@@ -456,7 +457,7 @@ const PacienteComponente = () => {
             </div>
           </div>
 
-          <div className="col-span-full m-60 flex gap-4">
+          <div className="col-span-full m-20 flex gap-4">
             <button
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"

@@ -9,7 +9,8 @@ const TablaComponent = ({data, columns, ButtonsConfig, mutate}) => {
         enableRowActions: true,
         renderRowActions: ({row, table}) => {
           return (
-            <div className="flex flex-row"><ButtonsConfig row={row} mutate={mutate}/></div>
+            ButtonsConfig ? (<div className="flex flex-row"><ButtonsConfig row={row} mutate={mutate}/></div>)
+             :(null)
           );
         },
         localization: MRT_Localization_ES,

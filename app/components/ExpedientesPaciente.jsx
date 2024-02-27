@@ -2,7 +2,6 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
 import useSWR from "swr";
 import { toast } from 'sonner';
 import { ExpedientesByPaciente } from '../../columnas/columns';
@@ -12,12 +11,11 @@ import ButtonConfigExpedientes from '../components/ButtonsConfigExpedientePorPac
 
 const ExpedientesPaciente = ({ pacienteID, tiposDiabetes }) => {
   const router = useRouter();
-  const [paciente, setPaciente] = useState(pacienteID);//[paciente, setPaciente
   const { data: session } = useSession();
   const idUsuario = session?.user?.ID_Usuario;
   //inicializamos la peticion de los datos con swr en lugar de usar useEffect
   const { data, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_API_URL}/expedientes/allByPaciente/${paciente}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/expedientes/allByPaciente/${pacienteID}`,
     {
       revalidateIfStale: true,
       revalidateOnFocus: false,
@@ -69,10 +67,14 @@ const ExpedientesPaciente = ({ pacienteID, tiposDiabetes }) => {
     }
   });
   return (
-
     <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
-      <h2>Tratamientos del paciente con codigo {paciente ? paciente : ''}</h2>
-      <form className="grid grid-cols-2 gap-2 max-w-screen-md w-full space-y-8" onSubmit={enviar}>
+      <h2>
+        Tratamientos del paciente con codigo {pacienteID ? pacienteID : ""}
+      </h2>
+      <form
+        className="grid grid-cols-2 gap-2 max-w-screen-md w-full space-y-8"
+        onSubmit={enviar}
+      >
         <div className="col-span-3 sm:col-span-1">
           <label
             htmlFor="Motivo_Consulta"
@@ -118,7 +120,6 @@ const ExpedientesPaciente = ({ pacienteID, tiposDiabetes }) => {
           </div>
         </div>
 
-
         <div className="col-span-3 sm:col-span-1">
           <label
             htmlFor="Id_Diabetes"
@@ -139,12 +140,16 @@ const ExpedientesPaciente = ({ pacienteID, tiposDiabetes }) => {
                 },
               })}
             >
-              {
-                tiposDiabetes ?
-                  (tiposDiabetes.map((item) => (
-                    <option key={item.ID_Diabetes} value={item.ID_Diabetes}> {item.Descripcion}</option>
-                  ))) : <option value="">Cargando...</option>
-              }
+              {tiposDiabetes ? (
+                tiposDiabetes.map((item) => (
+                  <option key={item.ID_Diabetes} value={item.ID_Diabetes}>
+                    {" "}
+                    {item.Descripcion}
+                  </option>
+                ))
+              ) : (
+                <option value="">Cargando...</option>
+              )}
             </select>
             {errors.Id_Diabetes && (
               <span className="mt-1 text-sm text-red-500">
@@ -218,12 +223,12 @@ const ExpedientesPaciente = ({ pacienteID, tiposDiabetes }) => {
             htmlFor="Nivel_Azucar"
             className="block text-sm font-medium leading-6 text-gray-900"
           >
-            Nivel de Azucar mg/dl  :
+            Nivel de Azucar mg/dl :
           </label>
           <div className="mt-2">
             <input
               id="Nivel_Azucar"
-              type='number'
+              type="number"
               min={0}
               max={1000}
               name="Nivel_Azucar"
@@ -243,7 +248,6 @@ const ExpedientesPaciente = ({ pacienteID, tiposDiabetes }) => {
             )}
           </div>
         </div>
-
 
         <div className="col-span-3 sm:col-span-1">
           <label
@@ -276,7 +280,8 @@ const ExpedientesPaciente = ({ pacienteID, tiposDiabetes }) => {
             )}
             {errors.Tiempo_tratamiento?.type === "maxLength" && (
               <span className="mt-1 text-sm text-red-500">
-                La especificacion del tiempo de tratamiento no debe superar los 200 caracteres
+                La especificacion del tiempo de tratamiento no debe superar los
+                200 caracteres
               </span>
             )}
             {errors.Tiempo_tratamiento?.type === "minLength" && (
@@ -318,7 +323,8 @@ const ExpedientesPaciente = ({ pacienteID, tiposDiabetes }) => {
             )}
             {errors.Recomendaciones?.type === "maxLength" && (
               <span className="mt-1 text-sm text-red-500">
-                La especificacion de las recomendaciones no debe superar los 200 caracteres
+                La especificacion de las recomendaciones no debe superar los 200
+                caracteres
               </span>
             )}
             {errors.Recomendaciones?.type === "minLength" && (
@@ -329,8 +335,6 @@ const ExpedientesPaciente = ({ pacienteID, tiposDiabetes }) => {
           </div>
         </div>
 
-
-
         <div className="col-span-full m-40 flex gap-4">
           <button
             type="submit"
@@ -338,27 +342,30 @@ const ExpedientesPaciente = ({ pacienteID, tiposDiabetes }) => {
           >
             Registrar Tratamiento
           </button>
-
           <button
-            type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            onClick={() => {
-              router.push('/Pacientes');
-            }}
-          >
-            Regresar
-          </button>
+          type="button"
+          className="group relative  w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          onClick={() => {
+            router.push("/Pacientes");
+          }}
+        >
+          Regresar
+        </button>
         </div>
-
-
       </form>
-
       <div className="w-full sm:w-4/5">
-        <h3 className="text-xl font-bold mb-4 mt-28 text-center">Tratamientos Asignados</h3>
-        <TablaExpedientes data={data ? data : []} columns={ExpedientesByPaciente} ButtonsConfig={ButtonConfigExpedientes} mutate={mutate} />
+        <h3 className="text-xl font-bold mb-4 mt-28 text-center">
+          Tratamientos Asignados
+        </h3>
+        <TablaExpedientes
+          data={data ? data : []}
+          columns={ExpedientesByPaciente}
+          ButtonsConfig={ButtonConfigExpedientes}
+          mutate={mutate}
+        />
       </div>
     </section>
-  )
+  );
 }
 
 export default ExpedientesPaciente

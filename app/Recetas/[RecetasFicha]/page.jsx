@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
-const RecetaFichas = dynamic(() => import('../../components/Recetasficha'), { ssr: false, loading: () => <p>Regresando...</p> })
+import Spin from '../../components/Spin'
+const RecetaFichas = dynamic(() => import('../../components/Recetasficha'), { ssr: false, loading: () => <Spin/> })
 import { getMedicamentoss } from '../../../servicios/moduloMedicamentos.js'
 
 const RecetaFicha = async ({ params }) => {
