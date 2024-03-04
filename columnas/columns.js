@@ -202,3 +202,36 @@ export const Receta = [
     size: 200,
   }
 ];
+
+export const Ficha_Medica = [
+  {
+    accessorKey: "Id_Ficha",
+    header: "Codigo Expediente",
+    enableEditing: false,
+    size: 80,
+  },
+  {
+    accessorKey: "Id_Paciente",
+    header: "Codigo Paciente",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Nombres",
+    header: "Nombres",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Fecha",
+    header: "Fecha",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Estado",
+    header: "Estado",
+    enableEditing: true,
+    size: 200,
+  },
+];
