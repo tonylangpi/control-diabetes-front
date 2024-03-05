@@ -9,19 +9,37 @@ const ButtonFichaMedica = ({ row, mutate}) => {
     try {
       if (row.original.Id_Paciente) {
         console.log('Descargando ficha médica para el paciente con Id_Paciente:', row.original.Id_Paciente);
+  
+        // Hacer la solicitud a la API
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_API_URL}/fichamedica/descarga/${row.original.Id_Paciente}`,
           {
             responseType: 'blob',  
           }
         );
+  
+        // Crear un enlace para descargar el archivo
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+  
+        // Nombre del archivo basado en el Id_Paciente y la fecha actual
+        const fileName = `Expediente_${row.original.Id_Paciente}_${new Date().toISOString()}.pdf`;
+        link.setAttribute('download', fileName);
+  
+        // Agregar el enlace al cuerpo del documento y hacer clic en él para descargar
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+  
       } else {
         console.error('Id_Paciente no definido');
       }
     } catch (error) {
+      console.error('Error durante la descarga:', error);
       if (axios.isAxiosError(error)) {
         console.error('Error de Axios:', error.message, error.response);
-      } 
+      }
     }
   };
 
