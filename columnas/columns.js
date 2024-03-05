@@ -211,14 +211,20 @@ export const Ficha_Medica = [
     size: 80,
   },
   {
-    accessorKey: "Id_Paciente",
-    header: "Codigo Paciente",
+    accessorKey: "DPI",
+    header: "Numero de Identificación",
     enableEditing: true,
     size: 200,
   },
   {
     accessorKey: "Nombres",
     header: "Nombres",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Apellidos",
+    header: "Apellidos",
     enableEditing: true,
     size: 200,
   },
