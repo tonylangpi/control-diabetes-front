@@ -61,7 +61,7 @@ const Recetasficha = ({ fichaID, medicamento }) => {
 
   return (
     <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
-      <h2>Recetas del paciente con codigo {ficha ? ficha : ""}</h2>
+      <h2>Medicamentos de la Ficha con codigo: {ficha ? ficha : ""}</h2>
       <form
         className="grid grid-cols-2 gap-2 max-w-screen-md w-full space-y-8"
         onSubmit={enviar}
