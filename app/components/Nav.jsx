@@ -62,6 +62,7 @@ const Navbar = () => {
                          <ListItem NavLink="/">Expediente</ListItem>
                          <ListItem NavLink="/Tipos_Diabetes">Tipo de Diabetes</ListItem>
                          <ListItem NavLink="/Medicamentos">Registro de Medicamentos</ListItem>
+                         <ListItem NavLink="/Usuarios">Usuarios del sistema</ListItem>
                          <button
                            onClick={() => {
                              signOut();

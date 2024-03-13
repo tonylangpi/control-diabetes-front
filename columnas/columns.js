@@ -241,3 +241,42 @@ export const Ficha_Medica = [
     size: 200,
   },
 ];
+
+export const UsuariosColumnas = [
+  {
+    accessorKey: "ID_Usuario",
+    header: "Codigo Usuario",
+    enableEditing: false,
+    size: 80,
+  },
+  {
+    accessorKey: "Nombres",
+    header: "Nombres",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Apellidos",
+    header: "Apellidos",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Correo",
+    header: "Correo registrado",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Descripcion",
+    header: "Rol",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Estado",
+    header: "Estado",
+    enableEditing: true,
+    size: 200,
+  }
+]

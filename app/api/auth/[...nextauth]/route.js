@@ -11,7 +11,7 @@ export const authOptions= {
          password: {label:"Password", type: "password"}
       },
       async authorize(credentials) {
-        const res = await sequelize.query(`SELECT  usu.ID_Usuario, usu.Nombres, usu.Apellidos, usu.Correo, usu.Contrasena, r.Descripcion FROM Usuarios usu 
+        const res = await sequelize.query(`SELECT  usu.ID_Usuario, usu.Nombres, usu.Apellidos, usu.Correo, usu.Contrasena, r.Descripcion, usu.Estado FROM Usuarios usu 
         inner join Roles r on r.Id_Rol = usu.Rol
         WHERE usu.Correo = ?`,{
           type: sequelize.QueryTypes.SELECT,
@@ -19,7 +19,7 @@ export const authOptions= {
         });
         let usuarioEncontrado = res[0];
         if(usuarioEncontrado == undefined) throw new Error("Credenciales invalidas"); 
-        if(usuarioEncontrado.Descripcion != "DOCTOR") throw new Error("Acceso no permitido")
+        if(usuarioEncontrado.Descripcion != "DOCTOR" || usuarioEncontrado.Estado != "ACTIVO") throw new Error("Acceso no permitido")
         const passworMatch = await bcrypt.compare(credentials.password, usuarioEncontrado.Contrasena);
         if(!passworMatch) throw new Error("Credenciales invalidas"); 
         return  usuarioEncontrado; 
