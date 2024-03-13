@@ -9,6 +9,9 @@ const ButtonConfigUsuarios = ({row, mutate}) => {
     const editUsuario = () => {
       router.push(`/Usuarios/${row.getValue("ID_Usuario")}`)
   }
+   const changePass = async () => {
+      router.push(`/Usuarios/cambiocontra/${row.getValue("ID_Usuario")}`)
+   }
   return (
     <>
       <button
@@ -21,25 +24,32 @@ const ButtonConfigUsuarios = ({row, mutate}) => {
         onClick={async () => {
           if (
             !confirm(
-              `Deseas cambiar el estado del paciente: ${row.getValue("Nombres")} ${row.getValue("Apellidos")}`
+              `Deseas cambiar el estado del Usuario: ${row.getValue(
+                "Nombres"
+              )} ${row.getValue("Apellidos")}`
             )
           ) {
             return;
           }
-          toast.promise(async()=>{
-              const res = await changeStatusUsuario(row.getValue("ID_Usuario"), row.getValue("Estado"))
-              if(res.message){
-                  mutate()
-                  return res.message
-              }else{
-                  throw new Error('No se pudo cambiar el estado del paciente')
+          toast.promise(
+            async () => {
+              const res = await changeStatusUsuario(
+                row.getValue("ID_Usuario"),
+                row.getValue("Estado")
+              );
+              if (res.message) {
+                mutate();
+                return res.message;
+              } else {
+                throw new Error("No se pudo cambiar el estado del Usuario");
               }
-          },
-          {
-            loading: "Loading...",
-            success: (data) => `${data}`,
-            error: (data) => `${data}`,
-          })
+            },
+            {
+              loading: "Loading...",
+              success: (data) => `${data}`,
+              error: (data) => `${data}`,
+            }
+          );
         }}
       >
         <svg
@@ -77,6 +87,43 @@ const ButtonConfigUsuarios = ({row, mutate}) => {
             strokeLinejoin="round"
             d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
           />
+        </svg>
+      </button>
+      <button
+        type="button"
+        className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
+        data-te-toggle="tooltip"
+        data-te-placement="top"
+        data-te-ripple-color="light"
+        title="Cambiar contraseña"
+        onClick={changePass}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="icon icon-tabler icons-tabler-outline icon-tabler-password-fingerprint"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M17 8c.788 1 1 2 1 3v1" />
+          <path d="M9 11c0 -1.578 1.343 -3 3 -3s3 1.422 3 3v2" />
+          <path d="M12 11v2" />
+          <path d="M6 12v-1.397c-.006 -1.999 1.136 -3.849 2.993 -4.85a6.385 6.385 0 0 1 6.007 -.005" />
+          <path d="M12 17v4" />
+          <path d="M10 20l4 -2" />
+          <path d="M10 18l4 2" />
+          <path d="M5 17v4" />
+          <path d="M3 20l4 -2" />
+          <path d="M3 18l4 2" />
+          <path d="M19 17v4" />
+          <path d="M17 20l4 -2" />
+          <path d="M17 18l4 2" />
         </svg>
       </button>
     </>

@@ -49,3 +49,16 @@ export const changeStatusUsuario = async (id, estado) => {
       console.error(error);
     }
   }
+
+ export const updatePassword = async (id, datos) => {
+    try {
+      const { data } = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/usuarios/updatePassword/${id}`, datos, {
+        headers: {
+          apiKey: process.env.NEXT_PUBLIC_API_KEY
+        }
+      });
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
