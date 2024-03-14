@@ -8,9 +8,13 @@ const DashboardPage = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col md:flex-row items-center justify-center p-8 m-2 text-white bg-cover bg-center relative"
-      style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-    >
+    className="min-h-screen flex flex-col md:flex-row items-center justify-center p-4 md:p-8 text-white bg-cover bg-center relative"
+    style={{ 
+      backgroundImage: `url(${backgroundImageUrl})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
+    }}
+  >
       <div className="md:mr-8 text-center md:text-left">
         <h1 className="text-7xl font-bold mb-6 text-black">
           ¡Descubre un Estilo de Vida Saludable con Nosotros!
