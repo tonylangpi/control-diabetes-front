@@ -280,3 +280,37 @@ export const UsuariosColumnas = [
     size: 200,
   }
 ]
+export const Azucarrr = [
+ 
+  {
+    accessorKey: "Id_toma",
+    header: "Codigo Control",
+    enableEditing: false,
+    size: 200,
+  },
+  {
+    accessorKey: "Nombres",
+    header: "Nombre del Paciente",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Apellidos",
+    header: "Apellidos del Paciente",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Fecha",
+    header: "Fecha",
+    enableEditing: true,
+    size: 200,
+  },
+  {
+    accessorKey: "Nivel_azucar",
+    header: "Nivel Azucar",
+    enableEditing: true,
+    size: 200,
+  }
+
+];
