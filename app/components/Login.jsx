@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
+import axios from 'axios';
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import {toast} from 'sonner';
 import Image from 'next/image'
 import logo from '../pictures/logo.jpg'
+
 export default function Component() {
   const [error, setError] = useState("");
   const router = useRouter();
@@ -24,21 +26,88 @@ const handleSubmit = async (event) => {
               redirect: false,
             })
             if (res?.ok) {
-              router.push("/dashboard");
-              return "Bienvenido al sistema";
+              console.log("Respuesta de signIn:", res);
+              // Acceder al token en la estructura de respuesta correcta
+              const { token } = res;
+               // Generar un código aleatorio
+              const randomCode = generateRandomCode();
+               // Guardar el código en la tabla de usuarios
+               await saveAccessCode(formData.get("email"), randomCode);
+              console.log("Token obtenido:", token);
+              // Enviar el código por correo electrónico
+              await handleEnviarTokenCorreo(formData.get("email"), token, randomCode);
+              router.push("/verify");
+              return "Se envió un codigo de autorización, favor de ingresarlo";
             }
-             throw new Error(res.error) ;
+            throw new Error(res.error);
           },
           {
             loading: "Loading...",
             success: (data) => `${data}`,
             error: (data) => `${data}`,
           }
-        )
+        );
+      } catch (error) {
+        console.error(error);
+        setError("Credenciales inválidas");
+      }
+    };
+
+     const generateRandomCode = () => {
+    // Generar un código aleatorio de 6 dígitos
+    const code = Math.floor(100000 + Math.random() * 900000);
+    return code.toString();
+  };
+
+  const saveAccessCode = async (email, code) => {
+    try {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/usuarios/save-access-code`, {
+        email: email,
+        code: code
+      }, {
+        headers: {
+        apiKey: process.env.NEXT_PUBLIC_API_KEY
+      },
+    } );
+
+      if (response.status === 200) {
+        console.log("Código de acceso guardado correctamente en la tabla de usuarios.");
+      } else {
+        console.error("Hubo un error al guardar el código de acceso en la tabla de usuarios.");
+        console.error("Respuesta del servidor:", response.data);
+      }
+    } catch (error) {
+      console.error("Error al guardar el código de acceso en la tabla de usuarios:", error);
+    }
+  };
+
+  const handleEnviarTokenCorreo = async (destinatario, token, code) => {
+    try {
+      console.log("Destinatario:", destinatario);
+      console.log("Token:", token);
+      console.log("codigo:", code);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/usuarios/correoenviado`, {
+        destinatario: destinatario,
+        code: code 
+      }, {
+        headers: {
+        apiKey: process.env.NEXT_PUBLIC_API_KEY
+      },
+    });
+
+    if (response.status === 200) {
+      // La solicitud fue exitosa
+      console.log("Token enviado correctamente al correo electrónico.");
+    } else {
+      // Hubo un error en la solicitud
+      console.error("Hubo un error al enviar el token al correo electrónico.");
+      console.error("Respuesta del servidor:", response.data);
+    }
   } catch (error) {
-    console.error(error);
+    console.error("Error al enviar el token al correo electrónico:", error);
   }
 };
+
 return (
   <section
     className="min-h-screen flex items-center justify-center"
@@ -51,7 +120,7 @@ return (
         </h2>
         <p className="text-sm text-gray-600 mb-4">Ingresa Credenciales de Médico</p>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+        <form onSubmit={handleSubmit}  className="flex flex-col gap-8">
           {error && (
             <div className="bg-red-600 text-white p-2 rounded-md mb-4">{error}</div>
           )}

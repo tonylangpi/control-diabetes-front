@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"; 
 import  {sequelize}  from '../../../config/db';
 import bcrypt from 'bcryptjs'; 
+
 export const authOptions= {
   providers: [
     CredentialsProvider({
@@ -18,11 +19,22 @@ export const authOptions= {
           replacements: [credentials?.email]
         });
         let usuarioEncontrado = res[0];
-        if(usuarioEncontrado == undefined) throw new Error("Credenciales invalidas"); 
-        if(usuarioEncontrado.Descripcion != "DOCTOR" || usuarioEncontrado.Estado != "ACTIVO") throw new Error("Acceso no permitido")
+        if (usuarioEncontrado == undefined) throw new Error("Credenciales invalidas");
+        if (usuarioEncontrado.Descripcion != "DOCTOR" || usuarioEncontrado.Estado != "ACTIVO") throw new Error("Acceso no permitido")
         const passworMatch = await bcrypt.compare(credentials.password, usuarioEncontrado.Contrasena);
-        if(!passworMatch) throw new Error("Credenciales invalidas"); 
-        return  usuarioEncontrado; 
+
+        if (!passworMatch) throw new Error("Credenciales invalidas");
+        // Genera el token de acceso con la información del usuario
+        const token = {
+          id: usuarioEncontrado.ID_Usuario,
+          email: usuarioEncontrado.Correo,
+          name: `${usuarioEncontrado.Nombres} ${usuarioEncontrado.Apellidos}`,
+          role: usuarioEncontrado.Descripcion,
+          // Otros datos del usuario que quieras incluir en el token
+        };
+
+        // Devuelve el token junto con el objeto del usuario
+        return { token, user: usuarioEncontrado };
       }
     })
   ],
@@ -37,7 +49,8 @@ export const authOptions= {
       }
   },
   pages: {
-    signIn : '/login'
+    signIn : '/login',
+    verify: '/verify'
   }
 }
 const handler = NextAuth(authOptions);

@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -8,6 +8,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { data: session, status } = useSession();
   const router = useRouter();
+
   return (() => {
     switch (status) {
       case "loading":
