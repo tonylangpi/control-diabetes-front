@@ -2,40 +2,29 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"; 
 import  {sequelize}  from '../../../config/db';
 import bcrypt from 'bcryptjs'; 
+import axios from "axios";
 
 export const authOptions= {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-         email: {label:"Email", type: "email", placeholder:"langpi@gmail.com"},
-         password: {label:"Password", type: "password"}
+         code: {label:"code", type: "text"}
+         
       },
       async authorize(credentials) {
-        const res = await sequelize.query(`SELECT  usu.ID_Usuario, usu.Nombres, usu.Apellidos, usu.Correo, usu.Contrasena, r.Descripcion, usu.Estado FROM Usuarios usu 
-        inner join Roles r on r.Id_Rol = usu.Rol
-        WHERE usu.Correo = ?`,{
-          type: sequelize.QueryTypes.SELECT,
-          replacements: [credentials?.email]
+          // Enviar el código ingresado para su verificación
+          const {data} = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/usuarios/verify`,{
+            code: credentials.code, 
+          }, {
+            headers: {
+            apiKey: process.env.NEXT_PUBLIC_API_KEY
+          },
         });
-        let usuarioEncontrado = res[0];
-        if (usuarioEncontrado == undefined) throw new Error("Credenciales invalidas");
-        if (usuarioEncontrado.Descripcion != "DOCTOR" || usuarioEncontrado.Estado != "ACTIVO") throw new Error("Acceso no permitido")
-        const passworMatch = await bcrypt.compare(credentials.password, usuarioEncontrado.Contrasena);
-
-        if (!passworMatch) throw new Error("Credenciales invalidas");
-        // Genera el token de acceso con la información del usuario
-        const token = {
-          id: usuarioEncontrado.ID_Usuario,
-          email: usuarioEncontrado.Correo,
-          name: `${usuarioEncontrado.Nombres} ${usuarioEncontrado.Apellidos}`,
-          role: usuarioEncontrado.Descripcion,
-          // Otros datos del usuario que quieras incluir en el token
-        };
-
-        // Devuelve el token junto con el objeto del usuario
-        return { token, user: usuarioEncontrado };
+        console.log("Esto es de data:", data)
+        return data[0];
       }
+
     })
   ],
   callbacks: {
@@ -50,7 +39,6 @@ export const authOptions= {
   },
   pages: {
     signIn : '/login',
-    verify: '/verify'
   }
 }
 const handler = NextAuth(authOptions);

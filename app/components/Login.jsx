@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
 import axios from 'axios';
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import {toast} from 'sonner';
 import Image from 'next/image'
 import logo from '../pictures/logo.jpg'
+import {login} from '../../servicios/moduloUsuarios'
 
 export default function Component() {
   const [error, setError] = useState("");
@@ -20,20 +20,19 @@ const handleSubmit = async (event) => {
       
         toast.promise(
           async () => {
-            const res = await signIn("credentials", {
-              email: formData.get("email"),
-              password: formData.get("password"),
-              redirect: false,
-            })
-            if (res?.ok) {
+            const res = await login( 
+             formData.get("email"),
+             formData.get("password")
+            )
+            console.log(res);
+            if (res?.info != null) {
               console.log("Respuesta de signIn:", res);
               // Acceder al token en la estructura de respuesta correcta
               const { token } = res;
-               // Generar un código aleatorio
+              // Generar un código aleatorio
               const randomCode = generateRandomCode();
-               // Guardar el código en la tabla de usuarios
-               await saveAccessCode(formData.get("email"), randomCode);
-              console.log("Token obtenido:", token);
+              // Guardar el código en la tabla de usuarios
+              await saveAccessCode(formData.get("email"), randomCode);
               // Enviar el código por correo electrónico
               await handleEnviarTokenCorreo(formData.get("email"), token, randomCode);
               router.push("/verify");
@@ -52,7 +51,6 @@ const handleSubmit = async (event) => {
         setError("Credenciales inválidas");
       }
     };
-
      const generateRandomCode = () => {
     // Generar un código aleatorio de 6 dígitos
     const code = Math.floor(100000 + Math.random() * 900000);

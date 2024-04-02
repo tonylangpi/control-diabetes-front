@@ -1,63 +1,80 @@
 "use client";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'; 
-import axios from 'axios';
 import Spin from './Spin'
-
+import { signIn } from "next-auth/react";
+import { toast } from "sonner";
+import { useForm } from "react-hook-form";
 
 export default function Verify() {
-  const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false); // Definir el estado success
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      // Enviar el código ingresado para su verificación
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/usuarios/verify`, {
-        code: code,
-      }, {
-        headers: {
-        apiKey: process.env.NEXT_PUBLIC_API_KEY
-      },
-    });
-      if (response.data.success) {
-        setSuccess(true);
-        setTimeout(() => {
-          router.push('/dashboard');
-        }, 2000);
-      } else {
-        setError('Código inválido');
-      }
-    } catch (error) {
-      console.error('Error al verificar el código:', error);
-      setError('Error al verificar el código');
-      console.log(response);
-    }
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+    defaultValues: {
+      code:  ''
+    },
+  });
 
+  const enviar = handleSubmit(async (codigo) => {
+    console.log(codigo)
+    try {
+      toast.promise(
+        async () => {
+          const res = await signIn("credentials", {
+            code: codigo.code,
+            redirect: false,
+          });
+          if (res?.ok) {
+            router.push("/dashboard");
+            return "Bienvenido al sistema";
+          }
+          throw new Error(res.error);
+        },
+        {
+          loading: "Loading...",
+          success: (data) => `${data}`, 
+          error: (data) => `${data}`,
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+ 
   return (
     <div className=" flex items-center justify-center " style={{ marginTop: '20vh' }}>
       <div className="bg-white p-10 rounded-lg shadow-md max-w-md ">
         <h2 className="text-2xl font-semibold mb-6 text-center">Verificar Código</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={enviar}>
           <div className="mb-4">
             <label htmlFor="code" className="block  font-medium mb-2">Código:</label>
             <input
               type="text"
               id="code"
               name="code"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
               className="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-300"
               required
               disabled={loading} // Deshabilitar el campo de entrada durante la carga
+              {...register("code", {
+                required: {
+                  value: true,
+                  message: "Campo requerido",
+                },
+              })}
             />
+            {errors.code && (
+              <span className="mt-1 text-sm text-red-500">
+                {errors.code.message}
+              </span>
+            )}
           </div>
-          {error && <p className="text-red-500 mb-4">{error}</p>}
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"

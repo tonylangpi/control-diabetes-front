@@ -62,3 +62,16 @@ export const changeStatusUsuario = async (id, estado) => {
       console.error(error);
     }
   }
+  
+ export const login = async (email, pass) => {
+  try {
+    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/usuarios/login/${email}`,{pass:pass}, {
+      headers: {
+        apiKey: process.env.NEXT_PUBLIC_API_KEY
+      }
+    });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
