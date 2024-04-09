@@ -9,6 +9,8 @@ import { createRecetaByFicha } from '../../servicios/moduloRecetas'
 import TablaReceta from '../components/Tabla'
 import ButtonConfigRecetas from '../components/ButtonsConfigReceta'
 
+const backgroundImageUrl ='https://images.vexels.com/media/users/3/144667/raw/61432f618c6cd418c9b52ac449c1b84f-fondo-blanco-minimalista-con-curvas.jpg';
+
 const Recetasficha = ({ fichaID, medicamento }) => {
   const router = useRouter();
   const [ficha, setFicha] = useState(fichaID);
@@ -60,7 +62,8 @@ const Recetasficha = ({ fichaID, medicamento }) => {
 
 
   return (
-    <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
+    <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+     
       <h2>Medicamentos de la Ficha con codigo: {ficha ? ficha : ""}</h2>
       <form
         className="grid grid-cols-2 gap-2 max-w-screen-md w-full space-y-8"

@@ -8,6 +8,8 @@ import useSWR from 'swr';
 import {Medicamentoss} from '../../columnas/columns'
 import ButtonsConfigMedicamentos from './ButtonEditMedicamento';
 
+const backgroundImageUrl ='https://media.istockphoto.com/id/1369748264/es/vector/resumen-antecedentes-blanca-textura-geom%C3%A9trica.jpg?s=612x612&w=0&k=20&c=fQbh4A70PqfV9TTdEAIf9GWibOyatvv_t-yudB5pAc8=';
+
 const Medicamentos = () => {
 
   //inicializamos la peticion de los datos con swr en lugar de usar useEffect
@@ -56,7 +58,8 @@ const Medicamentos = () => {
 
   return (
     <>
-    <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
+       <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+      
       <form
         className="grid grid-cols-2 gap-4 max-w-screen-md w-full space-y-8" onSubmit={enviar}
       >

@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import {updatePaciente} from '../../servicios/moduloPacientes'
 import {toast} from 'sonner'
 
+const backgroundImageUrl ='https://images.vexels.com/media/users/3/144667/raw/61432f618c6cd418c9b52ac449c1b84f-fondo-blanco-minimalista-con-curvas.jpg';
+
 const DetallePacienteEdit = ({detallesPacienteId}) => {
    const router = useRouter();
     const {
@@ -50,7 +52,8 @@ const DetallePacienteEdit = ({detallesPacienteId}) => {
         }
       });
   return (
-    <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
+    <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+      
          <h3 className="text-xl font-bold mb-4  text-center">Editar Informacion del Paciente</h3>
       <form className="grid grid-cols-3 gap-4 max-w-screen-md w-full space-y-8" onSubmit={onSubmit}>
         <div className="col-span-3 sm:col-span-1">

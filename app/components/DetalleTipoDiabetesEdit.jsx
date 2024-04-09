@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { updateTipoDiabetes } from '../../servicios/moduloTipoDiabetes'
 import { toast } from 'sonner'
 
+const backgroundImageUrl ='https://images.vexels.com/media/users/3/144667/raw/61432f618c6cd418c9b52ac449c1b84f-fondo-blanco-minimalista-con-curvas.jpg';
+
 const DetalleTipoDiabetesEdit = ({ detallesTipoDiabetesId }) => {
   const router = useRouter();
   const {
@@ -46,7 +48,8 @@ const DetalleTipoDiabetesEdit = ({ detallesTipoDiabetesId }) => {
 
 
   return (
-    <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
+    <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-60" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+      
       <h3 className="text-xl font-bold mb-4  text-center">Editar Informacion de Tipos de Diabetes</h3>
       <form className=" gap-4 max-w-screen-md w-full space-y-8" onSubmit={onSubmit}>
         <div className="col-span-2 sm:col-span-1">

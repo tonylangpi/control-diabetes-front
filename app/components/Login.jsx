@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useRouter } from "next/navigation";
 import {toast} from 'sonner';
 import Image from 'next/image'
-import logo from '../pictures/logo.jpg'
+import logo from '../pictures/logo2.png'
 import {login} from '../../servicios/moduloUsuarios'
 
 export default function Component() {
@@ -116,7 +116,7 @@ return (
         <h2 className="font-bold text-3xl text-center text-gray-800 mb-4">
           Sistema de Control de Pacientes
         </h2>
-        <p className="text-sm text-gray-600 mb-4">Ingresa Credenciales de Médico</p>
+        <p className="text-sm text-black mb-6">Ingresa Credenciales de Médico</p>
 
         <form onSubmit={handleSubmit}  className="flex flex-col gap-8">
           {error && (

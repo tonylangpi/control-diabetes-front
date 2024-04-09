@@ -8,6 +8,9 @@ import useSWR from 'swr';
 import {TipoDiabetesT} from '../../columnas/columns'
 import ButtonsConfigTipoDiabetes from './ButtonEditTipoDiabetes';
 
+const backgroundImageUrl ='https://static.vecteezy.com/ti/vetor-gratis/p1/1337743-fundo-branco-e-elegante-com-curvas-vetor.jpg';
+
+
 const Tipos_Componentes = () => {
   //inicializamos la peticion de los datos con swr en lugar de usar useEffect
   const { data, mutate } = useSWR(
@@ -55,7 +58,8 @@ const Tipos_Componentes = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
+        <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+      
         <form
           className="grid grid-cols-2 gap-4 max-w-screen-md w-full space-y-8" onSubmit={enviar}
         >

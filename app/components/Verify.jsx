@@ -9,7 +9,8 @@ import { useForm } from "react-hook-form";
 export default function Verify() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
+  const backgroundImageUrl ='https://img.freepik.com/vector-gratis/fondo-monocromatico-blanco-estilo-papel_23-2149023490.jpg?w=1060&t=st=1708063013~exp=1708063613~hmac=52a12bac02b81877895b3af89b130f353f89cb5e6b4fdc9cc8d140029b3b98cd';
+  
   const {
     register,
     handleSubmit,
@@ -49,7 +50,8 @@ export default function Verify() {
 
  
   return (
-    <div className=" flex items-center justify-center " style={{ marginTop: '20vh' }}>
+    <div  className="min-h-screen flex items-center justify-center" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }}>
+      
       <div className="bg-white p-10 rounded-lg shadow-md max-w-md ">
         <h2 className="text-2xl font-semibold mb-6 text-center">Verificar Código</h2>
         <form onSubmit={enviar}>

@@ -10,6 +10,8 @@ import TablaExpedientes from '../components/Tabla'
 import ButtonConfigExpedientes from '../components/ButtonsConfigExpedientePorPaciente'
 
 const ExpedientesPaciente = ({ pacienteID, tiposDiabetes }) => {
+  const backgroundImageUrl ='https://images.vexels.com/media/users/3/144667/raw/61432f618c6cd418c9b52ac449c1b84f-fondo-blanco-minimalista-con-curvas.jpg';
+
   const router = useRouter();
   const { data: session } = useSession();
   const idUsuario = session?.user?.ID_Usuario;
@@ -67,7 +69,8 @@ const ExpedientesPaciente = ({ pacienteID, tiposDiabetes }) => {
     }
   });
   return (
-    <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
+    <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+      
       <h2>
         Tratamientos del paciente con codigo {pacienteID ? pacienteID : ""}
       </h2>

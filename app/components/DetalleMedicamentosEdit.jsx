@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { updateMedicamentos } from '../../servicios/moduloMedicamentos'
 import { toast } from 'sonner'
 
+const backgroundImageUrl ='https://media.istockphoto.com/id/1369748264/es/vector/resumen-antecedentes-blanca-textura-geom%C3%A9trica.jpg?s=612x612&w=0&k=20&c=fQbh4A70PqfV9TTdEAIf9GWibOyatvv_t-yudB5pAc8=';
+
 const DetalleMedicamentosEdit = ({ detallesMedicamentosId }) => {
   const router = useRouter();
   const {
@@ -46,7 +48,8 @@ const DetalleMedicamentosEdit = ({ detallesMedicamentosId }) => {
 
 
   return (
-    <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
+    <section  className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-60" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+      
      <h3 className="text-xl font-bold mb-4  text-center">Editar Informacion de Medicamento</h3>
       <form className=" gap-4 max-w-screen-md w-full space-y-8" onSubmit={onSubmit}>
         <div className="col-span-2 sm:col-span-1">

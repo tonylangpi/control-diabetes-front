@@ -7,6 +7,8 @@ import useSWR from 'swr';
 import { pacientes } from '../../columnas/columns'
 import ButtonsConfigPacientes from './ButtonEditPaciente';
 
+const backgroundImageUrl ='https://images.vexels.com/media/users/3/144667/raw/61432f618c6cd418c9b52ac449c1b84f-fondo-blanco-minimalista-con-curvas.jpg';
+  
 const PacienteComponente = () => {
   //inicializamos la peticion de los datos con swr en lugar de usar useEffect
   const { data, mutate } = useSWR(
@@ -66,7 +68,8 @@ const PacienteComponente = () => {
   return (
     <>
 
-      <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8">
+      <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+      
         <h3 className="text-xl font-bold mb-4  text-center">Crear Paciente</h3>
 
         <form
