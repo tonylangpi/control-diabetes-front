@@ -15,9 +15,9 @@ export default function Home() {
   );
   
   return (
-    <main className="flex-col items-center">
+    <main className="flex-col items-center ">
       
-      <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+      <div className="flex flex-col items-center justify-center h-screen gap-5  bg-gray-50 p-8" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
       
         
         <h3 className="text-xl font-bold  text-center">Listado de Expedientes</h3>

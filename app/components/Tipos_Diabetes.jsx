@@ -58,7 +58,7 @@ const Tipos_Componentes = () => {
 
   return (
     <>
-        <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+        <div className="flex flex-col items-center justify-center h-screen gap-5  bg-gray-50 p-8" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
       
         <form
           className="grid grid-cols-2 gap-4 max-w-screen-md w-full space-y-8" onSubmit={enviar}

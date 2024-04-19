@@ -18,7 +18,7 @@ const TiposAzucar = () => {
   );
     return (
         <>
-          <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 " style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+          <div className="flex flex-col items-center justify-center h-screen gap-5  bg-gray-50 " style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
       
    
       <div className="w-full sm:w-4/5">
