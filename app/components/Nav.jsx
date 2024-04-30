@@ -16,21 +16,21 @@ const Navbar = () => {
       case "authenticated":
          return (
            <header
-             className={`flex w-full items-center bg-white dark:bg-white`}
+             className={`flex w-full items-center bg-yellow-400 dark:bg-white`}
            >
              <div className="container">
                <div className="relative -mx-1 flex items-center justify-between">
                  <div className="w-60 max-w-full px-10">
                    <Link href={"/dashboard"} >
                      <img
-                       src="https://umgnaranjo.com/wp-content/uploads/2018/11/logo-umg.png"
+                       src="https://www.mariposachc.net/wp-content/uploads/2020/03/Diabetes-Ed.-logo.png"
                        alt="logo"
                        className="dark:hidden h-13"
                        
                      />
                       
                      <img
-                       src="https://umgnaranjo.com/wp-content/uploads/2018/11/logo-umg.png"
+                       src="https://www.mariposachc.net/wp-content/uploads/2020/03/Diabetes-Ed.-logo.png"
                        alt="logo"
                        className="hidden dark:block h-13 "
                      />
@@ -53,11 +53,11 @@ const Navbar = () => {
                      <nav
                        // :className="!navbarOpen && 'hidden' "
                        id="navbarCollapse"
-                       className={`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:dark:bg-black ${
+                       className={`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-yellow-400 px-14 py-5 shadow dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:dark:bg-black ${
                          !open && "hidden"
                        } `}
                      >
-                       <ul className="block lg:flex">
+                       <ul className="block lg:flex ">
                          <ListItem NavLink="/dashboard">Inicio</ListItem>
                          <ListItem NavLink="/Pacientes">Pacientes</ListItem>
                          <ListItem NavLink="/">Expediente</ListItem>
@@ -69,7 +69,7 @@ const Navbar = () => {
                            onClick={() => {
                              signOut();
                            }}
-                           className="hidden rounded-md bg-primary px-7 py-3 text-base font-medium text-black hover:bg-red-700"
+                           className="hidden rounded-md bg-primary px-7 py-3 text-base font-medium text-white  hover:bg-white"
                          >
                            Cerrar Sesion
                          </button>
@@ -81,7 +81,7 @@ const Navbar = () => {
                        onClick={() => {
                          signOut();
                        }}
-                       className="rounded-md bg-primary px-7 py-3 text-base font-medium text-black hover:bg-red-700"
+                       className="rounded-md bg-primary px-7 py-3 text-base font-medium text-black hover:bg-white"
                      >
                        Cerrar Sesion
                      </button>

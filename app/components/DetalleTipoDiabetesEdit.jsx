@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { updateTipoDiabetes } from '../../servicios/moduloTipoDiabetes'
 import { toast } from 'sonner'
 
-const backgroundImageUrl ='https://images.vexels.com/media/users/3/144667/raw/61432f618c6cd418c9b52ac449c1b84f-fondo-blanco-minimalista-con-curvas.jpg';
+const backgroundImageUrl ='https://img.freepik.com/vector-premium/ilustracion-movimiento-flujo-curva-ondulada-color-liso-abstracto_206325-92.jpg';
 
 const DetalleTipoDiabetesEdit = ({ detallesTipoDiabetesId }) => {
   const router = useRouter();
@@ -50,12 +50,12 @@ const DetalleTipoDiabetesEdit = ({ detallesTipoDiabetesId }) => {
   return (
     <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-60" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
       
-      <h3 className="text-xl font-bold mb-4  text-center">Editar Informacion de Tipos de Diabetes</h3>
+      <h3 className="text-4xl font-bold mb-10  text-center">Editar Informacion de Tipos de Diabetes</h3>
       <form className=" gap-4 max-w-screen-md w-full space-y-8" onSubmit={onSubmit}>
         <div className="col-span-2 sm:col-span-1">
           <label
             htmlFor="Descripcion"
-            className="block text-sm font-medium leading-6 text-gray-900"
+            className="block text-lg font-medium leading-6 text-gray-900"
           >
             Descripcion:
           </label>
@@ -102,14 +102,14 @@ const DetalleTipoDiabetesEdit = ({ detallesTipoDiabetesId }) => {
         <div className="col-span-full m-60 flex gap-4">
           <button
             type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Editar
           </button>
 
           <button
             type="button"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 "
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 "
             onClick={() => {
               router.push('/Tipos_Diabetes');
             }}

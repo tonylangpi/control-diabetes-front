@@ -16,7 +16,7 @@ const DashboardPage = () => {
     }}
   >
       <div className="md:mr-8 text-center md:text-left">
-        <h1 className="text-7xl font-bold mb-6 text-black">
+        <h1 className="text-7xl font-bold mb-8 text-yellow-900">
           ¡Descubre un Estilo de Vida Saludable con Nosotros!
         </h1>
 

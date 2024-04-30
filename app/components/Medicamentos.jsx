@@ -8,7 +8,7 @@ import useSWR from 'swr';
 import {Medicamentoss} from '../../columnas/columns'
 import ButtonsConfigMedicamentos from './ButtonEditMedicamento';
 
-const backgroundImageUrl ='https://media.istockphoto.com/id/1369748264/es/vector/resumen-antecedentes-blanca-textura-geom%C3%A9trica.jpg?s=612x612&w=0&k=20&c=fQbh4A70PqfV9TTdEAIf9GWibOyatvv_t-yudB5pAc8=';
+const backgroundImageUrl ='https://png.pngtree.com/background/20220731/original/pngtree-simple-blank-yellow-background-picture-image_1912911.jpg';
 
 const Medicamentos = () => {
 
@@ -58,7 +58,7 @@ const Medicamentos = () => {
 
   return (
     <>
-       <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+       <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-10" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
       
       <form
         className="grid grid-cols-2 gap-4 max-w-screen-md w-full space-y-8" onSubmit={enviar}
@@ -66,7 +66,7 @@ const Medicamentos = () => {
         <div className="col-span-3 sm:col-span-1">
           <label
             htmlFor="Descripcion"
-            className="block text-sm font-medium leading-6 text-gray-900"
+            className="block text-lg font-medium leading-6 text-gray-900"
           >
             Descripcion:
           </label>
@@ -111,14 +111,14 @@ const Medicamentos = () => {
         <div className="m-20 lg:m-20">
           <button
             type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Registrar
           </button>
         </div>
       </form>
       <div className="w-full sm:w-4/5">
-  <h3 className="text-xl font-bold mb-4 mt-28 text-center">Tipos de Medicamentos</h3>
+  <h3 className="text-3xl font-bold mb-10 mt-28 text-center">Tipos de Medicamentos</h3>
         <Tabla data={data ? data : []} columns={Medicamentoss ? Medicamentoss : []} ButtonsConfig={ButtonsConfigMedicamentos} mutate={mutate} />
       </div>
     </div>

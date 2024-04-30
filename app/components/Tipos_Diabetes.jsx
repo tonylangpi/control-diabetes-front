@@ -8,7 +8,7 @@ import useSWR from 'swr';
 import {TipoDiabetesT} from '../../columnas/columns'
 import ButtonsConfigTipoDiabetes from './ButtonEditTipoDiabetes';
 
-const backgroundImageUrl ='https://static.vecteezy.com/ti/vetor-gratis/p1/1337743-fundo-branco-e-elegante-com-curvas-vetor.jpg';
+const backgroundImageUrl ='https://png.pngtree.com/background/20220807/original/pngtree-yellow-background-picture-image_1915262.jpg';
 
 
 const Tipos_Componentes = () => {
@@ -66,7 +66,7 @@ const Tipos_Componentes = () => {
           <div className="col-span-3 sm:col-span-1">
             <label
               htmlFor="Descripcion"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className="block text-lg font-medium leading-6 text-gray-900"
             >
               Descripcion:
             </label>
@@ -111,14 +111,14 @@ const Tipos_Componentes = () => {
           <div className="m-28">
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Registrar
             </button>
           </div>
         </form>
         <div className="w-full sm:w-4/5">
-  <h3 className="text-xl font-bold mb-4 mt-28 text-center">Tipos de Diabetes</h3>
+  <h3 className="text-3xl font-bold mb-10 mt-28 text-center">Tipos de Diabetes</h3>
           <Tabla data={data ? data : []} columns={TipoDiabetesT ? TipoDiabetesT : []} ButtonsConfig={ButtonsConfigTipoDiabetes} mutate={mutate} />
         </div>
       </div>

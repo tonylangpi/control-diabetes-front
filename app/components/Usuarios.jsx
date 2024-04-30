@@ -8,7 +8,7 @@ import useSWR from 'swr';
 import {UsuariosColumnas} from '../../columnas/columns'
 import ButtonsConfigUsuarios from './ButtonsConfigUsuarios';
 
-const backgroundImageUrl ='https://images.vexels.com/media/users/3/144667/raw/61432f618c6cd418c9b52ac449c1b84f-fondo-blanco-minimalista-con-curvas.jpg';
+const backgroundImageUrl ='https://png.pngtree.com/background/20220808/original/pngtree-white-yellow-background-picture-image_1915269.jpg';
 const Users = () => {
 
   //inicializamos la peticion de los datos con swr en lugar de usar useEffect
@@ -61,7 +61,7 @@ const Users = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+      <div className="flex flex-col text-4xl mb-10 font-bold items-center justify-center h-auto gap-6  bg-gray-50 p-10" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
       
         <h2>Datos de Usuario de sesion</h2>
         <form
@@ -71,7 +71,7 @@ const Users = () => {
           <div className="col-span-3 sm:col-span-1 ">
             <label
               htmlFor="Nombres"
-              className="block text-sm font-medium leading-6 text-gray-900 "
+              className="block text-lg font-medium leading-6 text-gray-900 "
             >
               Nombres:
             </label>
@@ -116,7 +116,7 @@ const Users = () => {
           <div className="col-span-3 sm:col-span-1">
             <label
               htmlFor="Apellidos"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className="block text-lg font-medium leading-6 text-gray-900"
             >
               Apellidos:
             </label>
@@ -163,7 +163,7 @@ const Users = () => {
           <div className="col-span-3 sm:col-span-1">
             <label
               htmlFor="Correo"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className="block text-lg font-medium leading-6 text-gray-900"
             >
               Correo Electronico:
             </label>
@@ -210,7 +210,7 @@ const Users = () => {
           <div className="col-span-3 sm:col-span-1">
             <label
               htmlFor="Correo"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className="block text-lg font-medium leading-6 text-gray-900"
             >
               Contraseña para logueo:
             </label>
@@ -253,7 +253,7 @@ const Users = () => {
           <div className="col-span-3 sm:col-span-1">
             <label
               htmlFor="Rol"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className="block text-lg font-medium leading-6 text-gray-900"
             >
               Rol Usuario:
             </label>
@@ -283,15 +283,15 @@ const Users = () => {
           <div className="col-span-full m-60 flex gap-4">
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Registrar
             </button>
           </div>
         </form>
         <div className="w-full sm:w-4/5">
-          <h3 className="text-xl font-bold mb-4 mt-28 text-center">
-            Usuarios de sistema
+          <h3 className="text-4xl font-bold mb-10 mt-28 text-center">
+            Usuarios del Sistema
           </h3>
           <Tabla
             data={data ? data : []}

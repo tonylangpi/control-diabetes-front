@@ -9,7 +9,7 @@ import { createRecetaByFicha } from '../../servicios/moduloRecetas'
 import TablaReceta from '../components/Tabla'
 import ButtonConfigRecetas from '../components/ButtonsConfigReceta'
 
-const backgroundImageUrl ='https://images.vexels.com/media/users/3/144667/raw/61432f618c6cd418c9b52ac449c1b84f-fondo-blanco-minimalista-con-curvas.jpg';
+const backgroundImageUrl ='https://png.pngtree.com/background/20220807/original/pngtree-yellow-background-picture-image_1915262.jpg';
 
 const Recetasficha = ({ fichaID, medicamento }) => {
   const router = useRouter();
@@ -62,7 +62,7 @@ const Recetasficha = ({ fichaID, medicamento }) => {
 
 
   return (
-    <section className="flex flex-col items-center justify-center h-auto gap-5  bg-gray-50 p-8" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
+    <section className="flex flex-col text-4xl mb-10 font-bold items-center justify-center h-auto gap-5  bg-gray-50 p-10" style={{  backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover'  }} >
      
       <h2>Medicamentos de la Ficha con codigo: {ficha ? ficha : ""}</h2>
       <form
@@ -72,7 +72,7 @@ const Recetasficha = ({ fichaID, medicamento }) => {
         <div className="col-span-3 sm:col-span-1">
           <label
             htmlFor="ID_MEDICAMENTO"
-            className="block text-sm font-medium leading-6 text-gray-900"
+            className="block text-lg font-medium leading-6 text-gray-900"
           >
             Tipo de Medicamento:
           </label>
@@ -111,7 +111,7 @@ const Recetasficha = ({ fichaID, medicamento }) => {
         <div className="col-span-3 sm:col-span-1">
           <label
             htmlFor="Instruccion"
-            className="block text-sm font-medium leading-6 text-gray-900"
+            className="block text-lg font-medium leading-6 text-gray-900"
           >
             Instuccion
           </label>
@@ -141,13 +141,13 @@ const Recetasficha = ({ fichaID, medicamento }) => {
         <div className="col-span-full m-40 flex gap-4">
           <button
             type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Registrar Receta
           </button>
           <button
           type="button"
-          className="group relative  w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="group relative  w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           onClick={() => {
             router.push("/Pacientes");
           }}
@@ -157,7 +157,7 @@ const Recetasficha = ({ fichaID, medicamento }) => {
         </div>
       </form>
       <div className="w-full sm:w-4/5">
-        <h3 className="text-xl font-bold mb-4 mt-28 text-center">
+        <h3 className="text-4xl font-bold mb-4 mt-28 text-center">
           Recetas asignadas
         </h3>
         <TablaReceta data={data ? data : []} columns={Receta}  ButtonsConfig={ButtonConfigRecetas} mutate={mutate} />
