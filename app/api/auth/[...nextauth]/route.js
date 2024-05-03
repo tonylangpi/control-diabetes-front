@@ -1,7 +1,5 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"; 
-import  {sequelize}  from '../../../config/db';
-import bcrypt from 'bcryptjs'; 
 import axios from "axios";
 
 export const authOptions= {
@@ -21,7 +19,6 @@ export const authOptions= {
             apiKey: process.env.NEXT_PUBLIC_API_KEY
           },
         });
-        console.log("Esto es de data:", data)
         return data[0];
       }
 
